@@ -7,15 +7,11 @@
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     <changeSet author="admin" id="1">
-        <createTable tableName="person">
-            <column autoIncrement="true" name="id" type="INT">
-                <constraints primaryKey="true"/>
-            </column>
-            <column name="name" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="address" type="VARCHAR(255)"/>
-        </createTable>
+        <comment>CREATE PERSON IF NOT EXISTS</comment>
+        <sql splitStatements="true">
+            CREATE DATABASE IF NOT EXISTS `liquidbase`;
+            CREATE TABLE IF NOT EXISTS `liquidbase`.`person` ( `id` INT(11) NOT NULL AUTO_INCREMENT , `name` VARCHAR(255) NOT NULL , `address` VARCHAR(255) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+        </sql>
         <!--<rollback>-->
             <!--<dropTable tableName="person"/>-->
         <!--</rollback>-->
